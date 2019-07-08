@@ -54,9 +54,9 @@ public class RomanToDecimalTest{
 	public void testRomanToDecimalFailing(){
 		try {
 			RomanToDecimal romanToDecimal1 = new RomanToDecimal();
-			float value = romanToDecimal1.romanToDecimal(anotherRomanNumeral);
+			romanToDecimal1.romanToDecimal(anotherRomanNumeral);
 		} catch (CustomException e) {
-			Assert.assertEquals(e.getMessage(), "Error : Roman Numeral M cannot repeat 4 times successively");
+			Assert.assertEquals("Error : Roman Numeral M cannot repeat 4 times successively",e.getMessage());
 		}
 	}
 

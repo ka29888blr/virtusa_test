@@ -76,8 +76,6 @@ public class ConversionRules {
 		if(checkIfLiteralPresent(NonRepeatingRomanNumerals, currentLiteral)){
 			nonRepeatableLiteralsCount.put(currentLiteral, nonRepeatableLiteralsCount.get(currentLiteral) + 1);
 			if(nonRepeatableLiteralsCount.containsValue(3)){
-				//System.err.println("Error : Roman Numeral V,L,D cannot be repeated.");	
-				//System.exit(0);
 				throw new CustomException("Error : Roman Numeral V,L,D cannot be repeated.");
 			}
 		}
@@ -85,8 +83,6 @@ public class ConversionRules {
 			Character keyForValueContainingThree = getKeyForValueContainingThree();
 			if(keyForValueContainingThree != '\0'){
 				if (currentLiteral.equals(keyForValueContainingThree)){
-					//System.err.println("Error : Roman Numeral "+currentLiteral+" cannot repeat 4 times successively");
-					//System.exit(0);
 					throw new CustomException("Error : Roman Numeral "+currentLiteral+" cannot repeat 4 times successively");
 				}
 				else if(currentLiteralSmallerThanPrevious(currentLiteral, keyForValueContainingThree)) {
@@ -111,7 +107,7 @@ public class ConversionRules {
 		while (iter.hasNext()) {
 			Map.Entry<Character,Integer> entry = iter.next();
 			if (entry.getValue().equals(3)) {
-				return Character.valueOf(entry.getKey());
+				return entry.getKey();
 			}
 		}
 		return key;
@@ -119,18 +115,15 @@ public class ConversionRules {
 
 	/**
 	 * checks if currentLiteral is smaller than the previous one. This rule is applied when repeatable literals can
-	 * occur 4 times only if the 3rd and 4th occurance has a smaller value between them.
-	 * @param CurrentLiteral
+	 * occur 4 times only if the 3rd and 4th occurrence has a smaller value between them.
+	 * @param currentLiteral
 	 * @param keyForValueContainingThree
 	 * @return
 	 */
-	private static boolean currentLiteralSmallerThanPrevious(char CurrentLiteral, char keyForValueContainingThree){
+	private static boolean currentLiteralSmallerThanPrevious(char currentLiteral, char keyForValueContainingThree){
 		boolean check = false;
-		if (ROMAN_TO_NUMERIC_MAPPING.get(CurrentLiteral)> ROMAN_TO_NUMERIC_MAPPING.get(keyForValueContainingThree)){
-			//System.err.println("Error : Should have been a lesser Roman Numeral next instead of "+CurrentLiteral);
-			//System.exit(0);
-			throw new CustomException("Error : Should have been a lesser Roman Numeral next instead of "+CurrentLiteral);
-			//return false;
+		if (ROMAN_TO_NUMERIC_MAPPING.get(currentLiteral)> ROMAN_TO_NUMERIC_MAPPING.get(keyForValueContainingThree)){
+			throw new CustomException("Error : Should have been a lesser Roman Numeral next instead of "+currentLiteral);
 		}
 		else{
 			check = true;
@@ -139,7 +132,7 @@ public class ConversionRules {
 	}
 
 	/**
-	 * Applies the subtaction logic and checks if the element is subtractable by the other or not.
+	 * Applies the subtraction logic and checks if the element is subtractable by the other or not.
 	 * @param lastDecimal
 	 * @param decimal
 	 * @param lastNumber

@@ -85,11 +85,11 @@ public class InputProcessor{
 	 */
 	public static void mapTokentoIntegerValue(){
 
-		Iterator it = tokenRomanValueMapping.entrySet().iterator();
+		Iterator<Map.Entry<String, String>> it = tokenRomanValueMapping.entrySet().iterator();
 		while (it.hasNext()) {
-			Map.Entry token = (Map.Entry)it.next();
-			float integerValue = new RomanToDecimal().romanToDecimal(token.getValue().toString());
-			tokenIntegerValue.put(token.getKey().toString(), integerValue);
+			Map.Entry<String,String> token = it.next();
+			float integerValue = new RomanToDecimal().romanToDecimal(token.getValue());
+			tokenIntegerValue.put(token.getKey(), integerValue);
 		}
 		mapMissingEntities();
 	}

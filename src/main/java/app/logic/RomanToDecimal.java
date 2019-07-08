@@ -1,12 +1,10 @@
 package app.logic;
 
-import java.util.HashMap;
-import java.util.Map;
 
 public class RomanToDecimal{
 
 	/**
-	 * Method to convert romannumeric to it's equivalent decimal
+	 * Method to convert Roman numeric to it's equivalent decimal
 	 * @param romanNumber
 	 * @return
 	 */
@@ -61,6 +59,8 @@ public class RomanToDecimal{
 				ConversionRules.checkLiteralCountValidity(convertToDecimal);
 				decimal = processDecimal(1, lastNumber, decimal);
 				lastNumber = 1;
+				break;
+			default :
 				break;
 			}
 		}
