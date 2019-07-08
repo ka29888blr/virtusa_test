@@ -2,15 +2,19 @@ package app.logic;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.HashMap;
 import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class OutputProcessor {
+public class OutputProcessor{
+	
+	private static final String MSG = " : I have no idea what you are talking about";
 
+	private OutputProcessor() {
+		
+	}
 	/**
-	 * processReplyForQuestion() itertates over the questionAndReply map that contain all the valid queries as keys.
+	 * processReplyForQuestion() iterates over the questionAndReply map that contain all the valid queries as keys.
 	 * It further invokes processReply() on each key for processing the response.
 	 */
 	public static void processReplyForQuestion(){
@@ -46,7 +50,7 @@ public class OutputProcessor {
 			System.out.println(query+" "+outputFormatter(tokenValue));
 		}
 		else{
-			System.err.println(query+" : I have no idea what you are talking about");
+			System.err.println(query+MSG);
 		}
 	}
 
@@ -68,7 +72,7 @@ public class OutputProcessor {
 					element = tokenValue.get(i);
 				}
 				else{
-					System.err.println(query+" : I have no idea what you are talking about");
+					System.err.println(query+MSG);
 				}
 			}
 			float elementValue = (new RomanToDecimal().romanToDecimal(tokenValueToRoman.toString()) * InputProcessor.elementValueList.get(element));
@@ -76,7 +80,7 @@ public class OutputProcessor {
 			System.out.println(query+" "+outputFormatter(tokenValue));
 		}
 		else{
-			System.err.println(query+" : I have no idea what you are talking about");
+			System.err.println(query+MSG);
 		}
 	}
 
@@ -97,7 +101,8 @@ public class OutputProcessor {
 	private static boolean isValidinput(String query){
 		Pattern regex = Pattern.compile("[$&+,:;=@#|]");
 		Matcher matcher = regex.matcher(query);
-		return matcher.find();
+		return !matcher.find();
+
 	}
 
 	/**
@@ -110,10 +115,11 @@ public class OutputProcessor {
 		int startIndex = 0;
 		int endIndex = 0;
 		for (int i = 0; i < queryArray.size(); i++) {
-			if(queryArray.get(i).equalsIgnoreCase("is")){
+			String elementName = queryArray.get(i).toLowerCase();
+			if(elementName.equals("is")){
 				startIndex = i+1;
 			}
-			else if(queryArray.get(i).equalsIgnoreCase("?")){
+			else if(elementName.equals("?")){
 				endIndex = i;
 
 			}

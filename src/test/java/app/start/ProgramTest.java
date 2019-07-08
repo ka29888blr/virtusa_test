@@ -4,13 +4,12 @@ import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.PrintStream;
 
+import app.logic.*;
+
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
-
-import app.logic.InputProcessor;
-import app.logic.OutputProcessor;
 
 public class ProgramTest {
 
@@ -33,19 +32,17 @@ public class ProgramTest {
 
 	@Test
 	/**
-	 * Method tests a positive scenario of the application. Input file by default
-	 * picked up by the input.
+	 * Method tests a positive scenario of the application. Input file by default picked up by the input.
 	 */
-	public void testProgram() throws IOException {
+	public void testProgram() throws IOException{
 		InputProcessor.processFile(filePath);
 		InputProcessor.mapTokentoIntegerValue();
 		OutputProcessor.processReplyForQuestion();
-		Assert.assertEquals(
-				"how much is pish tegj glob glob ? pish tegj glob glob is 42.0\n"
-						+ "how many Credits is glob prok Silver ? glob prok Silver is 68.0 Credits\n"
-						+ "how many Credits is glob prok Gold ? glob prok Gold is 57800.0 Credits\n"
-						+ "how many Credits is glob prok Iron ? glob prok Iron is 782.0 Credits\n",
-				outContent.toString());
+		Assert.assertEquals("how much is pish tegj glob glob ? pish tegj glob glob is 42.0\n" +
+				"how many Credits is glob prok Silver ? glob prok Silver is 68.0 Credits\n" +
+				"how many Credits is glob prok Gold ? glob prok Gold is 57800.0 Credits\n" +
+				"how many Credits is glob prok Iron ? glob prok Iron is 782.0 Credits\n"
+				, outContent.toString());
 	}
 
 }

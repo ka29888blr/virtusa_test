@@ -12,12 +12,12 @@ public class ConversionRulesTest {
 	@Before
 	public void setUp() throws Exception {
 		character = 'P';
-		characterArray = new Character[] { 'I', 'X', 'V', 'L' };
+		characterArray = new Character[]{'I','X','V','L'};
 
 	}
 
 	@Test
-	public void testOutputFormatter() {
+	public void testOutputFormatter(){
 		boolean result = ConversionRules.checkIfLiteralPresent(characterArray, character);
 		Assert.assertEquals(false, result);
 	}
@@ -27,8 +27,9 @@ public class ConversionRulesTest {
 	/**
 	 * Test whether the subtraction logic is handled correctly.
 	 */
-	public void testSubtractionLogic() {
+	public void testSubtractionLogic(){
 		float result = ConversionRules.subtractionLogic(52f, 10f, 50f);
 		Assert.assertEquals(42f, result, 00.00);
 	}
 }
+

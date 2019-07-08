@@ -39,3 +39,4 @@ public class OutputProcessorTest extends TestCase{
 		Assert.assertEquals("glob is 1", finalOutput);
 	}
 }
+

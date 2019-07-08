@@ -1,10 +1,12 @@
 package app.logic;
 
-public class RomanToDecimal {
+import java.util.HashMap;
+import java.util.Map;
+
+public class RomanToDecimal{
 
 	/**
 	 * Method to convert romannumeric to it's equivalent decimal
-	 * 
 	 * @param romanNumber
 	 * @return
 	 */
@@ -14,10 +16,10 @@ public class RomanToDecimal {
 		float lastNumber = 0;
 		char[] romanNumeral = romanNumber.toUpperCase().toCharArray();
 
-		// Operation to be performed on upper cases even if user enters Roman values in
-		// lower case chars
-		for (int x = romanNumeral.length - 1; x >= 0; x--) {
+		//Operation to be performed on upper cases even if user enters Roman values in lower case chars
+		for (int x = romanNumeral.length- 1; x >= 0 ; x--) {
 			Character convertToDecimal = romanNumeral[x];
+
 			switch (convertToDecimal) {
 			case 'M':
 				ConversionRules.checkLiteralCountValidity(convertToDecimal);
@@ -60,8 +62,6 @@ public class RomanToDecimal {
 				decimal = processDecimal(1, lastNumber, decimal);
 				lastNumber = 1;
 				break;
-			default:
-				break;
 			}
 		}
 		ConversionRules.resetLiteralsCounter();
@@ -70,7 +70,6 @@ public class RomanToDecimal {
 
 	/**
 	 * processDecimal() applied all subtraction logic and returns the result
-	 * 
 	 * @param decimal
 	 * @param lastNumber
 	 * @param lastDecimal
@@ -79,7 +78,8 @@ public class RomanToDecimal {
 	public float processDecimal(float decimal, float lastNumber, float lastDecimal) {
 		if (lastNumber > decimal) {
 			return ConversionRules.subtractionLogic(lastDecimal, decimal, lastNumber);
-		} else {
+		}
+		else {
 			return lastDecimal + decimal;
 		}
 	}
