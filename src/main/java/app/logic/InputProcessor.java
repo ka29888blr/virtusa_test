@@ -62,7 +62,7 @@ public class InputProcessor{
 	}
 
 	/**
-	 * processline adds the input to various maps<K,T> based on different conditions.
+	 * process line adds the input to various maps<K,T> based on different conditions.
 	 * @param line
 	 */
 	public static void processLine(String line){

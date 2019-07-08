@@ -6,6 +6,8 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
 
+import app.Exception.CustomException;
+
 public class ConversionRules {
 
 	private static final Character[] NonRepeatingRomanNumerals = {'D', 'L', 'V'};
@@ -74,16 +76,18 @@ public class ConversionRules {
 		if(checkIfLiteralPresent(NonRepeatingRomanNumerals, currentLiteral)){
 			nonRepeatableLiteralsCount.put(currentLiteral, nonRepeatableLiteralsCount.get(currentLiteral) + 1);
 			if(nonRepeatableLiteralsCount.containsValue(3)){
-				System.err.println("Error : Roman Numeral V,L,D cannot be repeated.");	
-				System.exit(0);
+				//System.err.println("Error : Roman Numeral V,L,D cannot be repeated.");	
+				//System.exit(0);
+				throw new CustomException("Error : Roman Numeral V,L,D cannot be repeated.");
 			}
 		}
 		else if(checkIfLiteralPresent(RepeatingRomanNumerals, currentLiteral)){
 			Character keyForValueContainingThree = getKeyForValueContainingThree();
 			if(keyForValueContainingThree != '\0'){
 				if (currentLiteral.equals(keyForValueContainingThree)){
-					System.err.println("Error : Roman Numeral "+currentLiteral+" cannot repeat 4 times successively");
-					System.exit(0);
+					//System.err.println("Error : Roman Numeral "+currentLiteral+" cannot repeat 4 times successively");
+					//System.exit(0);
+					throw new CustomException("Error : Roman Numeral "+currentLiteral+" cannot repeat 4 times successively");
 				}
 				else if(currentLiteralSmallerThanPrevious(currentLiteral, keyForValueContainingThree)) {
 					repeatableLiteralsCount.put(currentLiteral, repeatableLiteralsCount.get(currentLiteral) +1);
@@ -121,14 +125,17 @@ public class ConversionRules {
 	 * @return
 	 */
 	private static boolean currentLiteralSmallerThanPrevious(char CurrentLiteral, char keyForValueContainingThree){
+		boolean check = false;
 		if (ROMAN_TO_NUMERIC_MAPPING.get(CurrentLiteral)> ROMAN_TO_NUMERIC_MAPPING.get(keyForValueContainingThree)){
-			System.err.println("Error : Should have been a lesser Roman Numeral next instead of "+CurrentLiteral);
-			System.exit(0);
-			return false;
+			//System.err.println("Error : Should have been a lesser Roman Numeral next instead of "+CurrentLiteral);
+			//System.exit(0);
+			throw new CustomException("Error : Should have been a lesser Roman Numeral next instead of "+CurrentLiteral);
+			//return false;
 		}
 		else{
-			return true;
+			check = true;
 		}
+		return check;
 	}
 
 	/**
